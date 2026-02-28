@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nhóm 1</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+scroll-behavior:smooth;
+}
+
+body{
+background:linear-gradient(135deg,#d4fc79,#b8f2e6);
+overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+display:flex;
+justify-content:center;
+gap:40px;
+padding:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+z-index:1000;
+}
+
+nav a{
+font-weight:bold;
+cursor:pointer;
+}
+
+/* SECTION */
+section{
+padding:120px 20px 60px;
+text-align:center;
+}
+
+h1{
+font-size:45px;
+margin-bottom:20px;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+max-width:1100px;
+margin:auto;
+}
+
+.member{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+cursor:pointer;
+transition:0.3s;
+}
+
+.member:hover{
+transform:translateY(-5px);
+}
+
+.member img{
+width:120px;
+height:120px;
+object-fit:contain;
+margin-bottom:10px;
+}
+
+.quote{
+display:none;
+margin-top:10px;
+font-weight:bold;
+color:#2f5d50;
+}
+
+/* PETALS */
+.petal{
+position:fixed;
+top:-20px;
+font-size:20px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{transform:translateY(100vh) rotate(360deg);opacity:0;}
+}
+
+/* GAME */
+#game{
+display:none;
+}
+
+#gameArea{
+height:300px;
+background:white;
+border-radius:20px;
+margin-top:20px;
+position:relative;
+overflow:hidden;
+}
+
+.banana{
+position:absolute;
+font-size:30px;
+cursor:pointer;
+animation:fallBanana 2s linear forwards;
+}
+
+@keyframes fallBanana{
+from{top:-40px;}
+to{top:300px;}
+}
+
+button{
+margin-top:10px;
+padding:8px 20px;
+border:none;
+border-radius:20px;
+background:#2ecc71;
+color:white;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#home">Trang chủ</a>
+<a href="#members">Thành viên</a>
+<a onclick="toggleGame()">Mini Game</a>
+</nav>
+
+<section id="home">
+<h1>Xin chào đây là trang web của Nhóm 1 💛</h1>
+<p>Chúng mình luôn đoàn kết và phát triển mỗi ngày.</p>
+</section>
+
+<section id="members">
+<h2>Thành viên nhóm</h2>
+
+<div class="container">
+
+<div class="member" onclick="toggleQuote(this)">
+<img src="https://i.imgur.com/7QjZQ0T.png">
+<h3 style="color:green;">Yến Nhi</h3>
+<div class="quote">Tự tin là chìa khóa thành công 🌸</div>
+</div>
+
+<div class="member" onclick="toggleQuote(this)">
+<img src="https://i.imgur.com/9Xn9XgF.png">
+<h3 style="color:blue;">Tuyết Trinh</h3>
+<div class="quote">Sáng tạo không giới hạn 💡</div>
+</div>
+
+<div class="member" onclick="toggleQuote(this)">
+<img src="https://i.imgur.com/Y2bVqQv.png">
+<h3 style="color:purple;">Khánh An</h3>
+<div class="quote">Luôn nỗ lực hết mình 🎨</div>
+</div>
+
+<div class="member" onclick="toggleQuote(this)">
+<img src="https://i.imgur.com/4AiXzf8.png">
+<h3>Ngọc Khánh</h3>
+<div class="quote">Kiên trì sẽ tạo khác biệt 📚</div>
+</div>
+
+<div class="member" onclick="toggleQuote(this)">
+<img src="https://i.imgur.com/fHyEMsl.png">
+<h3>Thành Nhân</h3>
+<div class="quote">Không bỏ cuộc 🚀</div>
+</div>
+
+<div class="member" onclick="toggleQuote(this)">
+<img src="https://i.imgur.com/TK9WcQy.png">
+<h3>Anh Minh</h3>
+<div class="quote">Đoàn kết là sức mạnh 💪</div>
+</div>
+
+<div class="member" onclick="toggleQuote(this)">
+<img src="https://i.imgur.com/NLz8Z9E.png">
+<h3>Hoàng Long</h3>
+<div class="quote">Dám nghĩ dám làm 🔥</div>
+</div>
+
+<div class="member" onclick="toggleQuote(this)">
+<img src="https://i.imgur.com/OzZUNMM.png">
+<h3>Đăng Khoa</h3>
+<div class="quote">Bình tĩnh để thành công 🎯</div>
+</div>
+
+</div>
+</section>
+
+<section id="game">
+<h2>Mini Game 🍌</h2>
+<div id="gameArea"></div>
+<div>Điểm: <span id="score">0</span></div>
+<button onclick="startGame()">Bắt đầu</button>
+</section>
+
+<script>
+
+function toggleQuote(card){
+const q=card.querySelector(".quote");
+q.style.display=q.style.display==="block"?"none":"block";
+}
+
+function toggleGame(){
+const g=document.getElementById("game");
+g.style.display=g.style.display==="block"?"none":"block";
+}
+
+let score=0;
+
+function startGame(){
+score=0;
+document.getElementById("score").innerText=score;
+
+setInterval(()=>{
+const banana=document.createElement("div");
+banana.className="banana";
+banana.innerText="🍌";
+banana.style.left=Math.random()*90+"%";
+banana.onclick=function(){
+score++;
+document.getElementById("score").innerText=score;
+banana.remove();
+};
+document.getElementById("gameArea").appendChild(banana);
+setTimeout(()=>banana.remove(),2000);
+},1000);
+}
+
+setInterval(()=>{
+const petal=document.createElement("div");
+petal.className="petal";
+petal.innerText="🌸";
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=5+Math.random()*5+"s";
+document.body.appendChild(petal);
+setTimeout(()=>petal.remove(),10000);
+},500);
+
+</script>
+
+</body>
+</html>
